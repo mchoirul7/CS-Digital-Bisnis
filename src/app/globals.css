@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f8f7;
+  --foreground: #1f2933;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+button,
+input,
+summary {
+  font: inherit;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.wa-header-icon,
+.wa-input-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  transition: background-color 150ms ease;
+}
+
+.wa-header-icon {
+  width: 40px;
+  height: 40px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.wa-header-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.wa-input-icon {
+  width: 36px;
+  height: 36px;
+  color: #54656f;
+}
+
+.wa-input-icon:hover {
+  background: rgba(84, 101, 111, 0.08);
+}
+
+.wa-chat-wallpaper {
+  background-color: #efeae2;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='220' height='220' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23a7a39b' stroke-opacity='.18' stroke-width='1.2'%3E%3Cpath d='M28 38c11-10 26-8 34 2M34 48h23M156 34c11 1 20 9 21 20M164 47h27M45 132c8-8 20-8 28 0 7 8 7 19 0 27-8 8-20 8-28 0-7-8-7-19 0-27zM151 142l25-25M177 142l-26-25M99 35h31v22H99zM104 41h21M104 50h15M96 166c16-14 36-13 50 0M106 177h30M24 190c7-6 17-6 24 0M172 188c7-6 17-6 24 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+.helpdesk-panel {
+  width: min(23rem, calc(100vw - 2rem));
+  height: min(40rem, calc(100vh - 2rem));
+  border: 1px solid #cbd7d2;
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(27, 55, 45, 0.24);
+}
+
+.helpdesk-launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 3.2rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  background: #167b67;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(22, 123, 103, 0.28);
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.helpdesk-launcher:hover {
+  background: #126957;
+  transform: translateY(-1px);
+}
+
+.admin-shell {
+  background: #f6f8f7;
+}
+
+.admin-nav,
+.admin-nav-active {
+  display: inline-flex;
+  height: 2.25rem;
+  align-items: center;
+  padding: 0 0.75rem;
+  border-radius: 0.375rem;
+  color: #62716b;
+}
+
+.admin-nav:hover {
+  background: #f1f5f3;
+  color: #1f4f42;
+}
+
+.admin-nav-active {
+  background: #e5f2ed;
+  color: #126957;
+  font-weight: 600;
+}
+
+.stock-ok,
+.stock-warning,
+.transaction-draft,
+.transaction-confirmed,
+.transaction-processing {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
+  padding: 0.1rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.stock-ok {
+  background: #e5f2ed;
+  color: #126957;
+}
+
+.stock-warning {
+  background: #fff1d6;
+  color: #9a5d00;
+}
+
+.transaction-draft {
+  background: #eef1f0;
+  color: #5b6862;
+}
+
+.transaction-confirmed {
+  background: #e1f1ef;
+  color: #0e7566;
+}
+
+.transaction-processing {
+  background: #e9efff;
+  color: #365eab;
+}
+
+.wa-bubble {
+  position: relative;
+  max-width: min(78%, 42rem);
+  min-width: 4.25rem;
+  border-radius: 7.5px;
+  padding: 6px 7px 8px 9px;
+  box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+}
+
+.wa-bubble-in {
+  background: #ffffff;
+  color: #111b21;
+}
+
+.wa-bubble-out {
+  background: #d9fdd3;
+  color: #111b21;
+}
+
+.wa-bubble-in::before,
+.wa-bubble-out::before {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  content: "";
+  border-top: 9px solid currentColor;
+}
+
+.wa-bubble-in::before {
+  left: -8px;
+  color: #ffffff;
+  border-left: 9px solid transparent;
+}
+
+.wa-bubble-out::before {
+  right: -8px;
+  color: #d9fdd3;
+  border-right: 9px solid transparent;
+}

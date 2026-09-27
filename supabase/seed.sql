@@ -1,0 +1,39 @@
+INSERT INTO public.companies (id, name, created_at)
+VALUES
+  ('11111111-1111-4111-8111-111111111111', 'CV Maju Lancar', '2026-09-12T00:00:00.000Z')
+ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name;
+
+INSERT INTO public.products (id, company_id, sku, name, description, unit, price, active, created_at, updated_at)
+VALUES
+  ('22222222-2222-4222-8222-222222222201', '11111111-1111-4111-8111-111111111111', 'ML-IND-GRG-DUS', 'Indomie Goreng', 'Mie instan goreng per dus untuk kebutuhan retail.', 'dus', 115000, true, '2026-09-12T00:00:00.000Z', '2026-09-12T00:00:00.000Z'),
+  ('22222222-2222-4222-8222-222222222202', '11111111-1111-4111-8111-111111111111', 'ML-AQA-600-CRT', 'Aqua 600 ml', 'Air mineral 600 ml per karton.', 'karton', 48000, true, '2026-09-12T00:00:00.000Z', '2026-09-12T00:00:00.000Z'),
+  ('22222222-2222-4222-8222-222222222203', '11111111-1111-4111-8111-111111111111', 'ML-TEH-BTL-CRT', 'Teh Botol', 'Minuman teh kemasan per karton.', 'karton', 72000, true, '2026-09-12T00:00:00.000Z', '2026-09-12T00:00:00.000Z'),
+  ('22222222-2222-4222-8222-222222222204', '11111111-1111-4111-8111-111111111111', 'ML-GUL-1KG-SAK', 'Gula Pasir 1 kg', 'Gula pasir kemasan 1 kg per sak.', 'sak', 170000, true, '2026-09-12T00:00:00.000Z', '2026-09-12T00:00:00.000Z'),
+  ('22222222-2222-4222-8222-222222222205', '11111111-1111-4111-8111-111111111111', 'ML-MYG-1L-DUS', 'Minyak Goreng 1 L', 'Minyak goreng kemasan 1 liter per dus.', 'dus', 156000, true, '2026-09-12T00:00:00.000Z', '2026-09-12T00:00:00.000Z')
+ON CONFLICT (id) DO UPDATE SET
+  sku = EXCLUDED.sku,
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  unit = EXCLUDED.unit,
+  price = EXCLUDED.price,
+  active = EXCLUDED.active,
+  updated_at = EXCLUDED.updated_at;
+
+INSERT INTO public.inventory (id, company_id, product_id, quantity_on_hand, updated_at)
+VALUES
+  ('33333333-3333-4333-8333-333333333301', '11111111-1111-4111-8111-111111111111', '22222222-2222-4222-8222-222222222201', 57, '2026-09-12T00:00:00.000Z'),
+  ('33333333-3333-4333-8333-333333333302', '11111111-1111-4111-8111-111111111111', '22222222-2222-4222-8222-222222222202', 42, '2026-09-12T00:00:00.000Z'),
+  ('33333333-3333-4333-8333-333333333303', '11111111-1111-4111-8111-111111111111', '22222222-2222-4222-8222-222222222203', 25, '2026-09-12T00:00:00.000Z'),
+  ('33333333-3333-4333-8333-333333333304', '11111111-1111-4111-8111-111111111111', '22222222-2222-4222-8222-222222222204', 12, '2026-09-12T00:00:00.000Z'),
+  ('33333333-3333-4333-8333-333333333305', '11111111-1111-4111-8111-111111111111', '22222222-2222-4222-8222-222222222205', 30, '2026-09-12T00:00:00.000Z')
+ON CONFLICT (company_id, product_id) DO UPDATE SET
+  quantity_on_hand = EXCLUDED.quantity_on_hand,
+  updated_at = EXCLUDED.updated_at;
+
+INSERT INTO public.payment_accounts (id, company_id, bank_name, account_number, account_name, active, created_at)
+VALUES
+  ('44444444-4444-4444-8444-444444444401', '11111111-1111-4111-8111-111111111111', 'Bank Dummy Development', '0000000000', 'CV Maju Lancar Dev Only', true, '2026-09-12T00:00:00.000Z')
+ON CONFLICT (company_id, account_number) DO UPDATE SET
+  bank_name = EXCLUDED.bank_name,
+  account_name = EXCLUDED.account_name,
+  active = EXCLUDED.active;
